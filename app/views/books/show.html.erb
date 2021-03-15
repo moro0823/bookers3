@@ -1,26 +1,4 @@
-<h1>User info</h1>
-<div>
-  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-</div>
-<p>name <%= @user.name %></p>
-<p>introduction <%= @user.introduction %></p>
-<% if @user.id == current_user.id  %>
- <p><%= link_to"プロフィール編集",edit_user_path(@user.id) %></p>
- <% else %>
- <p><%= link_to"プロフィール編集",edit_user_path(current_user.id) %></p>
-<% end %>
-
-<h1>New Book</h1>
-<%= form_with model: @book,local:true do |f| %>
- <h4>Title</h4>
-  <%= f.text_field :title %>
- <h4>Opinion</h4>
-  <%= f.text_area :opinion %>
-  <%= f.submit "Create Book" %>
- <% end %>
-<!----------------------部分テンプレート------------------------------>
-
-
+<%= render "books/list",user: @user, book: @book %>
 
 <h1> Book detail</h1>
 <div>
@@ -28,7 +6,7 @@
   <%= link_to @book_detail.user.name, user_path(@book_detail.user_id) %>
 </div>
 <p><%= link_to @book_detail.title,book_path(@book_detail) %></p>
-<p><%= @book.opinion %></p>
+<p><%= @book_detail.body %></p>
 
 <% if @book_detail.user_id == current_user.id %>
  <%= link_to"Edit", edit_book_path %>
