@@ -6,7 +6,11 @@
 #
 default: &default
   adapter: sqlite3
+<<<<<<< HEAD
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+=======
+  pool: 5
+>>>>>>> origin/main
   timeout: 5000
 
 development:
@@ -22,4 +26,15 @@ test:
 
 production:
   <<: *default
+<<<<<<< HEAD
   database: db/production.sqlite3
+=======
+  database: <%= ENV['DB_DATABASE'] %>
+  adapter: mysql2
+  encoding: utf8mb4
+  charset: utf8mb4
+  collation: utf8mb4_general_ci
+  host: <%= ENV['DB_HOST'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+>>>>>>> origin/main
