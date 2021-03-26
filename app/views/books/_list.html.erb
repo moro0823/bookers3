@@ -1,38 +1,55 @@
-<% if flash[:notice] %>
+
+
+<div class="success_message">
+ <% if flash[:notice] %>
  <p id="notice">
   <%= flash[:notice] %>
 </p>
 <% end %>
-
-<h1>User info</h1>
-<div>
-  <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
 </div>
-<p>name <%= user.name %></p>
-<p>introduction <%= user.introduction %></p>
-<% if user.id == current_user.id  %>
- <p><%= link_to"プロフィール編集",edit_user_path(user.id) %></p>
- <% else %>
- <p><%= link_to"プロフィール編集",edit_user_path(user.id) %></p>
-<% end %>
 
+<div class="card">
+ <img class="bd-placeholder-img card-img-top shadow-lg">
+  <%= attachment_image_tag user, :profile_image, :fill, 300, 300, fallback: "no_image.jpg" %>
+ </img>
+ <!--<img> => <div> に変更するとエラーが消える-->
+   <div class="card-body">
+    <h5 class="card-title">User info</h5>
+    <p class="card-text">name <%= user.name %></p>
+    <p class="card-text">introduction <%= user.introduction %></p>
+    <% if user.id == current_user.id  %>
+     <p><%= link_to"",edit_user_path(user), class: "btn btn-primary fas fa-user-cog" %>
+        <% else %>
+        <%= link_to"",edit_user_path(user), class: "btn btn-primary fas fa-user-cog" %>
+        <% end %>
+     </p>
+  </div>
+</div>
 <!--@userをuserに変更-->
 
-<h1>New Book</h1>
-<% if book.errors.any? %>
- <%= book.errors.count %>件のerrorが発生しました
- <% book.errors.full_messages.each do |message| %>
-  <%= message %>
- <% end %>
- <% end %>
- 
-<%= form_with model: book,local:true do |f| %>
- <h4>Title</h4>
-  <%= f.text_field :title %>
- <h4>Opinion</h4>
-  <%= f.text_area :body %>
-  <%= f.submit "Create Book" %>
- <% end %>
+
+  <div class="shadow-lg">
+   <h2 class="text-dark bg-light p-4 mb-0">New book</h2> 
+   <div class="form-body p-4">
+    <% if book.errors.any? %>
+     <%= book.errors.count %>件のerrorが発生しました
+     <% book.errors.full_messages.each do |message| %>
+     <%= message %>
+      <% end %>
+     <% end %>
+    <%= form_with model: book,local:true do |f| %>
+    <div style="margin-bottom:20px">
+      <h4>Title</h4>
+      <%= f.text_field :title,class:"form-control", placeholder:"Title"  %>
+    </div>
+    <div>
+     <h4>Opinion</h4>
+      <%= f.text_area :body, class:"form-control", rows:"3",placeholder:"Body" %>
+      <%= f.submit "Create Book",class:"btn btn-lg btn-block btn-info mt-4" %>
+      <% end %>
+      </div>
+     </div>
+    </div>
  
  <!--@bookをbookに変更-->
 <!----------------------部分テンプレート------------------------------>

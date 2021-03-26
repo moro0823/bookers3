@@ -1,14 +1,24 @@
-<%= render "books/list",user: @user, book: @book %>
-
-<h1> Book detail</h1>
-<div>
-  <%= attachment_image_tag @book_detail.user, :profile_image,:fill, 60, 60, fallback: "no_image.jpg" %>
-  <%= link_to @book_detail.user.name, user_path(@book_detail.user_id) %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "books/list",user: @user, book: @book %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h1> Book detail</h1>
+      <div class="card" style="width: 18rem;">
+          <div class="card-body">
+              <h3 class="card-title"><%= link_to @book_detail.title,book_path(@book_detail) %></h3>
+              <p class="card-text"><%= @book_detail.body %></p>
+              <p> <%= attachment_image_tag @book_detail.user, :profile_image,:fill, 60, 60, fallback: "no_image.jpg" %><br>
+               From:<%= link_to @book_detail.user.name, user_path(@book_detail.user_id) %></p>
+             <% if @book_detail.user_id == current_user.id %>
+             <p><%= link_to"Edit", edit_book_path(@book_detail.id), class: "btn btn-outline-success btn-sm" %></p> 
+             <p><%= link_to"Destroy",book_path(@book_detail.id), method: :delete, "data-confirm"=>"本当に消しますか?", class: "btn btn-outline-danger btn-sm" %></p>
+              <% end %>
+          </div>
+      </div>
+    </div>
+  </div>
 </div>
-<p><%= link_to @book_detail.title,book_path(@book_detail) %></p>
-<p><%= @book_detail.body %></p>
 
-<% if @book_detail.user_id == current_user.id %>
- <%= link_to"Edit", edit_book_path %>
- <%= link_to"Destroy",book_path(@book_detail.id), method: :delete, "data-confirm"=>"本当に消しますか?" %>
-<% end %>
+

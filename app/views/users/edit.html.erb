@@ -1,21 +1,24 @@
+<% if @user.errors.any? %>
+  error <%= @user.errors.count %>件のエラーが発生しました
+ <%= @user.errors.full_messages.each do |message| %>
+    <% end %>
+   <% end %>
+
 <h1>User info</h1>
-<div>
 <%= form_with model:@user, local:true do |f| %>
-<label for="inputName">Name
+<div class="name">
+<label for="inputName">Name</label><br>
  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前" %>
-</label>
 </div>
 
-<div>
-<label for="inputImage">Image
+<div class="image">
+<label for="inputImage">Image</label><br>
   <%= f.attachment_field :profile_image, autofocus: true, placeholder:"プロフィール画像" %>
-</label>
 </div>
 
-<div>
-<label for="inputIntroduction">introduction
+<div class="introduction">
+<label for="inputIntroduction">introduction</label><br>
    <%= f.text_area :introduction, autofocus: true, placeholder:"自己紹介文" %>
-</label>
 </div>
-<div><%= f.submit"update User" %></div>
+<div><%= f.submit"Update User",class: "btn btn-secondary"  %></div>
 <% end %>

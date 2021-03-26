@@ -4,10 +4,19 @@
  </p>
 <% end %>
 
-<h1>Welcome to Bookers!!</h1>
-<p>in bookers</p>
-<p>you can share and exchange your opinions,inpressions,and emotions<br>
+<div class="mx-auto mt-5" style="width: 450px; text-align: center">
+ <div class="title">
+   <h1>Welcome to <span class="fas fa-book"></span>Bookers!!</h1>
+ </div>
+ <div class="sab-title">
+    <p>in <span style="font-weight:bold;"><span class="fas fa-book">bookers</span></span></p>
+    <p>you can share and exchange your opinions,inpressions,and emotions<br>
    about various books</p>
- 
-<p><%= link_to"Log in", new_user_session_path %></p>
-<p><%= link_to"Sign Up", new_user_registration_path %></p>
+ </div>
+ <div class="login">
+  <%= link_to"Log in", new_user_session_path, class:"btn btn-outline-primary"%>
+ </div>
+ <div class="signup mt-2">
+  <%= link_to"Sign Up", new_user_registration_path, class:"btn btn-outline-success" %>
+ </div>
+</div>
